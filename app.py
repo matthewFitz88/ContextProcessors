@@ -11,7 +11,10 @@ def utility_processor():
         print("DEBUG",request, request.endpoint)
         if app.config.get('my_role') in permitted_roles:
 
-            class_attribute = "class='inactive'"
+            class_attribute = ""
+
+            if request.endpoint == view:
+                class_attribute = "class='active'"
 
             link = "<a " + class_attribute + " href='" + url_for(view) + "'>" + linkname + "</a>"
             return Markup(link)
